@@ -1,4 +1,5 @@
 require 'sqlite3'
+require 'views.rb'
 
 =begin
 deck class
@@ -62,15 +63,6 @@ class Controller
   def ask_question(question, answer)
     user_answer = View.ask_question(question)
     ask_question(question, answer) unless user_answer == answer
-  end
-
-end
-
-module View
-  def self.ask_question(q)
-    puts q
-    answer = gets.chomp
-    return answer
   end
 
 end
