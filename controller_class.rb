@@ -19,22 +19,33 @@ class Controller
     @user = View.login
     View.login_success
     deck_num = View.choose_deck(deck).to_i - 1
-    show_card(deck[deck_num])
+    @current_deck = deck_num
+    show_card(deck[@current_deck])
   end
 
   def show_card(my_deck)
     card = my_deck.draw
-    match = nil
-    until match do
-      match = ask_question(card.question, card.answer)
-    end
-    #show_card
+    user_input(ask_question(card), card)
   end
 
-  def ask_question(question, answer)
+  def ask_question(card)
     View.top_box
-    user_answer = View.ask_question(question)
-    return user_answer == answer
+    user_answer = View.ask_question(card.question)
+    return user_answer
+  end
+
+  def user_input(input, card)
+    case input
+    when "quit"
+      return nil
+    when "next"
+      show_card(deck[@current_deck])
+    when card.answer
+      card.decrease_difficulty
+      show_card(deck[@current_deck])
+    else
+      ask_question(card)
+    end
   end
 
 end

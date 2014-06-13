@@ -5,16 +5,16 @@ require_relative 'card_class.rb'
 require_relative 'controller_class.rb'
 
 class Card
-  attr_accessor :question, :answer, :difficulty
+  attr_accessor :question, :answer
 
   def initialize(q, a)
     @question = q
     @answer = a
-    @difficulty_rating = 0 # 0 is hardest, 4 is easiest
+    @difficulty = 0 # 0 is hardest, 4 is easiest
   end
 
   def decrease_difficulty
-    difficulty += 1 unless difficulty == 4
+    @difficulty += 1 unless @difficulty == 4
   end
 
   def self.create(info_hash)
