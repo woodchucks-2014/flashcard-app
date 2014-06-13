@@ -3,6 +3,7 @@ require_relative 'view_module.rb'
 require_relative 'deck_class.rb'
 require_relative 'card_class.rb'
 require_relative 'controller_class.rb'
+require_relative 'database_stuff.rb'
 
 # my_deck = Deck.new('ruby')
 # question = "what can fly?"
@@ -26,8 +27,10 @@ require_relative 'controller_class.rb'
 # my_decks << Deck.new("Ruby") << Deck.new("SQL") << Deck.new("Javascript") << Deck.new("Html & CSS")
 # View.choose_deck(my_decks)
 
+db = Flashcards.new("flashcards.db")
+card_info = db.convert_to_hash
+
 my_controller = Controller.new
-test_deck = Deck.new("Ruby")
-test_deck.add(Card.new("Do you like cheese?","yes"))
+test_deck = Deck.create(card_info)
 my_controller.add(test_deck)
 my_controller.run
