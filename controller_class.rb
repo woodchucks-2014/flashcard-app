@@ -41,11 +41,12 @@ class Controller
     when "next"
       show_card(deck[@current_deck])
     when card.answer
-      card.decrease_difficulty
+      #card.decrease_difficulty
       show_card(deck[@current_deck])
-    else
-      ask_question(card)
     end
+    puts "                     Wrong!"
+    sleep(1)
+    show_card(deck[@current_deck])
   end
 
 end

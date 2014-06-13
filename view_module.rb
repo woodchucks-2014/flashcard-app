@@ -70,7 +70,17 @@ module View
 
 
   def self.ask_question(q)
-    print "\n\n     Definition: #{q}\n       Term: "
+    q_array = []
+    until q.length == 0 do
+      i = 50
+      i -= 1 until q[i] == " " || q[i] == nil
+      q_array << q.slice!(0, i+1)
+    end
+    print "\n\n     Definition: \n"
+    q_array.each do |line|
+      print "                  #{line}\n"
+    end
+    print "\n       Term: "
     answer = gets.chomp
     return answer
   end
