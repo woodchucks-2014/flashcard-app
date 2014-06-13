@@ -1,5 +1,8 @@
 require 'sqlite3'
-require 'views.rb'
+require 'view_module.rb'
+require 'deck_class.rb'
+require 'card_class.rb'
+require 'controller_class.rb'
 
 =begin
 deck class
@@ -16,56 +19,65 @@ can return question or answer
 verify the answer == card.answer
 =end
 
-class Deck
-  attr_accessor :cards
+# class Deck
+#   attr_accessor :cards
 
-  def initialize
-    @cards = []
-  end
+#   def initialize
+#     @cards = []
+#   end
 
-  def add(card)
-    cards << card
-  end
+#   def add(card)
+#     cards << card
+#   end
 
-  def draw
-    cards.sample
-  end
+#   def draw
+#     cards.sample
+#   end
 
-end
+#   def self.create(card_array)
+#     my_deck = Deck.new
+#     card_array.each do |card_info|
+#       my_deck.add(Card.create(card_info))
+#     end
+#     my_deck
+#   end
 
-class Card
-  attr_accessor :question, :answer
+# end
 
-  def initialize(q, a)
-    @question = q
-    @answer = a
-  end
 
-  # def self.from_database(data_row)
+# class Card
+#   attr_accessor :question, :answer
 
-  # end
+#   def initialize(q, a)
+#     @question = q
+#     @answer = a
+#   end
 
-end
+#   def self.create(info_hash)
+#     Card.new(info_hash[:definition], info_hash[:term])
+#   end
 
-class Controller
-  attr_accessor :deck
+# end
 
-  def add(deck)
-    @deck = deck
-  end
+# class Controller
+#   attr_accessor :deck
 
-  def show_card
-    card = deck.draw
-    ask_question(card.question, card.answer)
-    show_card
-  end
+#   def add(deck)
+#     @deck = deck
+#   end
 
-  def ask_question(question, answer)
-    user_answer = View.ask_question(question)
-    ask_question(question, answer) unless user_answer == answer
-  end
+#   def show_card
+#     card = deck.draw
+#     ask_question(card.question, card.answer)
+#     show_card
+#   end
 
-end
+#   def ask_question(question, answer)
+#     user_answer = View.ask_question(question)
+#     ask_question(question, answer) unless user_answer == answer
+#   end
+
+# end
 
 
 #testcode
@@ -85,3 +97,9 @@ my_controller = Controller.new
 my_controller.add(my_deck)
 
 my_controller.show_card
+
+View.login
+View.login_success
+my_decks = []
+my_decks << Deck.new("Ruby") << Deck.new("SQL") << Deck.new("Javascript") << Deck.new("Html & CSS")
+View.choose_deck(my_decks)
