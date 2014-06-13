@@ -1,3 +1,9 @@
+require 'sqlite3'
+require_relative 'view_module.rb'
+require_relative 'deck_class.rb'
+require_relative 'card_class.rb'
+require_relative 'controller_class.rb'
+
 module View
 
   def self.top_box
@@ -58,13 +64,13 @@ module View
       puts "          - #{i+1}. #{deck.name}"
     end
     print "\n       Deck: "
-    answer = gets.chomp
-    return answer
+    deck_num = gets.chomp
+    return deck_num
   end
 
 
   def self.ask_question(q)
-    puts q
+    print "\n\n     Definition: #{q}\n       Term: "
     answer = gets.chomp
     return answer
   end

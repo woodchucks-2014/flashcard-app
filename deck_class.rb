@@ -1,3 +1,9 @@
+require 'sqlite3'
+require_relative 'view_module.rb'
+require_relative 'deck_class.rb'
+require_relative 'card_class.rb'
+require_relative 'controller_class.rb'
+
 class Deck
   attr_accessor :cards, :name
 
@@ -24,3 +30,5 @@ class Deck
 
 end
 
+my_deck = Deck.create([{definition: "q", term: "a"}])
+puts my_deck.name

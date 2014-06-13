@@ -1,9 +1,20 @@
+require 'sqlite3'
+require_relative 'view_module.rb'
+require_relative 'deck_class.rb'
+require_relative 'card_class.rb'
+require_relative 'controller_class.rb'
+
 class Card
-  attr_accessor :question, :answer
+  attr_accessor :question, :answer, :difficulty
 
   def initialize(q, a)
     @question = q
     @answer = a
+    @difficulty_rating = 0 # 0 is hardest, 4 is easiest
+  end
+
+  def decrease_difficulty
+    difficulty += 1 unless difficulty == 4
   end
 
   def self.create(info_hash)
@@ -11,3 +22,6 @@ class Card
   end
 
 end
+
+
+
